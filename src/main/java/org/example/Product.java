@@ -2,50 +2,39 @@ package org.example;
 
 import java.math.BigDecimal;
 
-public class Product {
-    private final Integer numberOfLegs;
-    private final Integer age;
-    private final boolean isStinky;
-    private final String color;
-    private final BigDecimal basePrice;
-    private final String name;
-    private final BigDecimal sellPrice;
+public abstract class Product {
 
-    public Product(Integer numberOfLegs, Integer age, boolean isStinky, String color, BigDecimal basePrice, String name, BigDecimal sellPrice) {
-        this.numberOfLegs = numberOfLegs;
-        this.age = age;
-        this.isStinky = isStinky;
-        this.color = color;
+    protected BigDecimal basePrice;
+    protected String name;
+
+    public Product(String name){
+        this.name = name;
+        this.basePrice = BigDecimal.valueOf(0.0);
+    }
+
+    public Product(String name, BigDecimal basePrice) {
+
         this.basePrice = basePrice;
         this.name = name;
-        this.sellPrice = sellPrice;
     }
 
-    public Integer getNumberOfLegs() {
-        return numberOfLegs;
+    public Product (String name, Double basePrice){
+
+        this.basePrice = BigDecimal.valueOf(basePrice);
+        this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public Product setBasePrice(BigDecimal basePrice){
+
+        this.basePrice = basePrice;
+        return this;
     }
 
-    public boolean isStinky() {
-        return isStinky;
+    public Product setBasePrice(Double basePrice){
+
+        this.basePrice = BigDecimal.valueOf(basePrice);
+        return this;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public BigDecimal getBasePrice() {
-        return basePrice;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public BigDecimal getSellPrice() {
-        return sellPrice;
-    }
+    public abstract BigDecimal getPrice();
 }
